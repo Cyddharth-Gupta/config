@@ -123,7 +123,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Meets "
+set $ws1 "1: Meets"
 set $ws2 "2: Work"
 set $ws3 "3: Personal Projects"
 set $ws4 "4: Random"
@@ -208,18 +208,23 @@ hide_edge_borders both
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-	colors {
-		background $bg-color
-		separator #757575
+#bar {
+#        status_command i3status
+#	colors {
+#		background $bg-color
+#		separator #757575
 		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-}
+#		focused_workspace  $bg-color          $bg-color          $text-color
+#		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#	}
+#}
+
 exec --no-startup-id picom
 exec bytedance-lark-stable
 assign [class="Bytedance-lark"] $ws1
 exec_always feh --bg-scale /home/siddharth/Pictures/wallhaven-l8x1pr.jpg
+
+#Polybar Launch Script
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec xinput set-prop "SYNA2BA6:00 06CB:CEFE Touchpad" "libinput Tapping Enabled" 1
