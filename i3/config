@@ -49,6 +49,18 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
+# For screenshots install :
+# apt-get install maim xclip copyq
+
+##  Screenshots in files
+bindsym Print exec --no-startup-id maim --format=png "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-all.png"
+bindsym $mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-current.png"
+bindsym Shift+Print exec --no-startup-id maim --format=png --select "/home/$USER/Pictures/screenshot-$(date -u +'%Y%m%d-%H%M%SZ')-selected.png"
+
+## Screenshots in clipboards
+bindsym Ctrl+Print exec --no-startup-id maim --format=png | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --format=png --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --format=png --select | xclip -selection clipboard -t image/png
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -123,11 +135,11 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Meets"
-set $ws2 "2: Work"
-set $ws3 "3: Personal Projects"
-set $ws4 "4: Random"
-set $ws5 "5: Music"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -223,7 +235,7 @@ hide_edge_borders both
 exec --no-startup-id picom
 exec bytedance-lark-stable
 assign [class="Bytedance-lark"] $ws1
-exec_always feh --bg-scale /home/siddharth/Pictures/wallhaven-l8x1pr.jpg
+exec_always feh --bg-scale /home/siddharth/Pictures/itachi-crow.jpg
 
 #Polybar Launch Script
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
